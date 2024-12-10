@@ -1,0 +1,51 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.pid.lock
+
+# Environment variables
+.env
+
+# Coverage directory used by testing tools
+coverage/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+
+# Dependency directories
+bower_components/
+jspm_packages/
+
+# Build files
+dist/
+build/
+
+# TypeScript specific (if using TypeScript)
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Miscellaneous
+*.lock-wscript
+npm-shrinkwrap.json
