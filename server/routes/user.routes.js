@@ -7,7 +7,7 @@ const {
   getUserProfile,
   logoutUser,
 } = require("../controllers/user.controller");
-const { isAuthenticated } = require("../middlewares/auth.middleware");
+const { isAuthenticatedUser } = require("../middlewares/auth.middleware");
 
 router.post(
   "/register",
@@ -34,6 +34,6 @@ router.post(
   loginUser
 );
 
-router.get("/profile", isAuthenticated, getUserProfile);
-router.get("/logout".isAuthenticated, logoutUser);
+router.get("/profile", isAuthenticatedUser, getUserProfile);
+router.get("/logout".isAuthenticatedUser, logoutUser);
 module.exports = router;
