@@ -4,6 +4,7 @@ const {
   loginCaptain,
   registerCaptain,
   getCaptainProfile,
+  logoutCaptain,
 } = require("../controllers/captain.controller");
 const { isAuthenticatedCaptain } = require("../middlewares/auth.middleware");
 const router = express.Router();

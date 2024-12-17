@@ -35,5 +35,5 @@ router.post(
 );
 
 router.get("/profile", isAuthenticatedUser, getUserProfile);
-router.get("/logout".isAuthenticatedUser, logoutUser);
+router.get("/logout", isAuthenticatedUser, logoutUser);
 module.exports = router;
