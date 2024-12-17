@@ -1,16 +1,37 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useUserData } from "../context/userContext";
+import axios from "axios";
 
 function UserLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const submitHandeler = (e) => {
+  const { user, setUser } = useUserData();
+  const navigate = useNavigate();
+  const submitHandeler = async (e) => {
     e.preventDefault();
+
+    const userData = {
+      email,
+      password,
+    };
+
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/api/v1/users/login`,
+      userData,
+      {
+        withCredentials: true,
+      }
+    );
+
+    if (response.status === 200) {
+      setUser(response.data.user);
+      navigate("/home");
+    }
     setEmail("");
     setPassword("");
   };
-  return (
+  return !user.email ? (
     <div className="p-5 flex flex-col h-screen justify-between">
       <div>
         <img src="/assets/uberlogo.png" className="h-24 w-fit -m-6 mb-8" />
@@ -61,6 +82,8 @@ function UserLogin() {
         </Link>
       </div>
     </div>
+  ) : (
+    <Navigate to="/home" />
   );
 }
 

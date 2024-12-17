@@ -1,19 +1,41 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useUserData } from "../context/userContext";
 
 const UserSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const { setUser } = useUserData();
 
+  const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    setEmail("");
-    setFirstName("");
-    setLastName("");
-    setPassword("");
+    const newUser = {
+      fullname: {
+        firstname: firstName,
+        lastname: lastName,
+      },
+      email,
+      password,
+    };
+
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/api/v1/users/register`,
+      newUser,
+      {
+        withCredentials: true,
+      }
+    );
+
+    if (response.status === 201) {
+      const data = response.data;
+      setUser(data.user);
+      navigate("/home");
+    }
   };
   return (
     <div>
@@ -74,7 +96,7 @@ const UserSignup = () => {
               }}
               required
               type="password"
-              placeholder="password"
+              placeholder="password (minimum 8 chars)"
             />
 
             <button className="bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base">

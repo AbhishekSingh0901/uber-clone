@@ -5,8 +5,8 @@ module.exports.sendToken = async (user, statuscode, res, message) => {
 
   const cookieOptions = {
     maxAge: 1 * 24 * 60 * 60 * 1000,
-    httpsOnly: true,
-    sameSite: "strict",
+    secure: false, // Set true only in production
+    sameSite: "lax",
   };
 
   res
