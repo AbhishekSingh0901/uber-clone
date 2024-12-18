@@ -18,7 +18,8 @@ module.exports.registerCaptain = async (req, res, next) => {
   }
 
   const hashedPassword = await captainModel.hashPassword(password);
-  const captain = createCaptain({
+
+  const captain = await createCaptain({
     firstname,
     lastname,
     email,
@@ -26,7 +27,7 @@ module.exports.registerCaptain = async (req, res, next) => {
     color: vehicle.color,
     plate: vehicle.plate,
     capacity: vehicle.capacity,
-    vehicle: vehicle.vehicleType,
+    vehicleType: vehicle.vehicleType,
   });
 
   sendToken(captain, 201, res, "captain registered successfully");
