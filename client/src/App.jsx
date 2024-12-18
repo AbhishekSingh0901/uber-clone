@@ -6,24 +6,22 @@ import CaptainSignup from "./pages/CaptainSignup";
 import Hero from "./pages/Hero";
 import Home from "./pages/Home";
 import UserProtectedRoute from "./components/UserProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
 
 function App() {
   return (
     <div className="max-w-md mx-auto">
       <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/user-login" element={<UserLogin />} />
-        <Route path="/captain-login" element={<CaptainLogin />} />
-        <Route path="/captain-signup" element={<CaptainSignup />} />
-        <Route path="/user-signup" element={<UserSignup />} />
-        <Route
-          path="/home"
-          element={
-            <UserProtectedRoute>
-              <Home />
-            </UserProtectedRoute>
-          }
-        />
+        <Route element={<PublicRoute />}>
+          <Route path="/" element={<Hero />} />
+          <Route path="/user-login" element={<UserLogin />} />
+          <Route path="/captain-login" element={<CaptainLogin />} />
+          <Route path="/captain-signup" element={<CaptainSignup />} />
+          <Route path="/user-signup" element={<UserSignup />} />
+        </Route>
+        <Route element={<UserProtectedRoute />}>
+          <Route path="user-home" element={<Home />} />
+        </Route>
       </Routes>
     </div>
   );

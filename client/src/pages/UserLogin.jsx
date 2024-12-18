@@ -6,7 +6,7 @@ import axios from "axios";
 function UserLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, setUser } = useUserData();
+  const { setUser } = useUserData();
   const navigate = useNavigate();
   const submitHandeler = async (e) => {
     e.preventDefault();
@@ -26,12 +26,12 @@ function UserLogin() {
 
     if (response.status === 200) {
       setUser(response.data.user);
-      navigate("/home");
+      navigate("/users-home");
     }
     setEmail("");
     setPassword("");
   };
-  return !user.email ? (
+  return (
     <div className="p-5 flex flex-col h-screen justify-between">
       <div>
         <img src="/assets/uberlogo.png" className="h-24 w-fit -m-6 mb-8" />
@@ -82,8 +82,6 @@ function UserLogin() {
         </Link>
       </div>
     </div>
-  ) : (
-    <Navigate to="/home" />
   );
 }
 

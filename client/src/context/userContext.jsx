@@ -4,13 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 const UserDataContext = createContext();
 // eslint-disable-next-line react/prop-types
 const UserContext = ({ children }) => {
-  const [user, setUser] = useState({
-    fullname: {
-      firstname: "",
-      lastname: "",
-    },
-    email: "",
-  });
+  const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   console.log(user);
   useEffect(() => {
