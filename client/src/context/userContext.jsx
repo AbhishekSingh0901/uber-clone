@@ -2,11 +2,10 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const UserDataContext = createContext();
-// eslint-disable-next-line react/prop-types
+
 const UserContext = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
-  console.log(user);
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -15,7 +14,7 @@ const UserContext = ({ children }) => {
           { withCredentials: true }
         );
 
-        setUser(response.data);
+        if (response.data.success) setUser(response.data);
       } catch (error) {
         console.error("Not authenticated: ", error);
       } finally {

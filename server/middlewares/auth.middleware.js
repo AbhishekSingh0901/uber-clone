@@ -17,9 +17,12 @@ module.exports.isAuthenticatedUser = async (req, res, next) => {
     }
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     if (!decoded) {
-      res.status(401).json({ message: "invalid token", success: false });
+      return res.status(401).json({ message: "invalid token", success: false });
     }
     const user = await userModel.findById(decoded._id);
+    if (!user) {
+      return res.status(401).json({ message: "invalid token", success: false });
+    }
     req.user = user;
     next();
   } catch (err) {
@@ -35,14 +38,18 @@ module.exports.isAuthenticatedCaptain = async (req, res, next) => {
     }
 
     const isBlacklisted = await blacklistTokenModel.findOne({ token: token });
-    if (!isBlacklisted) {
+    if (isBlacklisted) {
       return res.status(401).json({ message: "Unauthorized", success: false });
     }
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
     if (!decoded) {
-      res.status(401).json({ message: "invalid token", success: false });
+      return res.status(401).json({ message: "invalid token", success: false });
     }
     const captain = await captainModel.findById(decoded._id);
+
+    if (!captain) {
+      return res.status(401).json({ message: "invalid token", success: false });
+    }
     req.captain = captain;
     next();
   } catch (err) {

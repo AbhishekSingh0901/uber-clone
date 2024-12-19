@@ -7,6 +7,8 @@ import Hero from "./pages/Hero";
 import Home from "./pages/Home";
 import UserProtectedRoute from "./components/UserProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import CaptainProtectedRoute from "./components/CaptainProtectedRoute";
+import CaptainHome from "./pages/CaptainHome";
 
 function App() {
   return (
@@ -20,7 +22,10 @@ function App() {
           <Route path="/user-signup" element={<UserSignup />} />
         </Route>
         <Route element={<UserProtectedRoute />}>
-          <Route path="user-home" element={<Home />} />
+          <Route path="/users-home" element={<Home />} />
+        </Route>
+        <Route element={<CaptainProtectedRoute />}>
+          <Route path="/captains-home" element={<CaptainHome />} />
         </Route>
       </Routes>
     </div>
