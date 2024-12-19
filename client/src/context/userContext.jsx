@@ -14,7 +14,7 @@ const UserContext = ({ children }) => {
           { withCredentials: true }
         );
 
-        if (response.data.success) setUser(response.data);
+        if (response.data.success) setUser(response.data.user);
       } catch (error) {
         console.error("Not authenticated: ", error);
       } finally {

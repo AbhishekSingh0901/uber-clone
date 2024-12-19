@@ -5,7 +5,6 @@ import { useCaptainData } from "../context/captainContext";
 const PublicRoute = () => {
   const { user } = useUserData();
   const { captain } = useCaptainData();
-  console.log(captain);
   if (user.email) {
     return <Navigate to="/users-home" />;
   }
