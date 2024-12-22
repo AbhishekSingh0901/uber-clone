@@ -7,7 +7,7 @@ function CaptainLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setCaptain } = useCaptainData();
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
   const submitHandeler = async (e) => {
     const captainData = {
       email,
@@ -24,7 +24,7 @@ function CaptainLogin() {
 
     if (response.status === 200) {
       setCaptain(response.data.user);
-      navigate("/captain-home");
+      navigate("/captains-home");
     }
 
     setEmail("");
