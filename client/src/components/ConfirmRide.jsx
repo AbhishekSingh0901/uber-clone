@@ -1,14 +1,18 @@
 import { MdKeyboardArrowDown, MdPayment } from "react-icons/md";
 import { GrLocationPin } from "react-icons/gr";
 import { FaSquare } from "react-icons/fa6";
-function ConfirmRide({ vehiclePanelOpen, setVehiclePanelOpen }) {
+function ConfirmRide({
+  confirmRidePanelOepn,
+  setConfirmRidePanelOpen,
+  setWaitingRideConfirmationPanelOpen,
+}) {
   return (
     <div className="px-5 py-10 relative">
       <button
         className={`absolute -top-3 left-1/2 -translate-x-1/2  ${
-          vehiclePanelOpen ? "flex" : "hidden"
+          confirmRidePanelOepn ? "flex" : "hidden"
         } justify-center items-center text-lg font-medium bg-gray-100 hover:bg-gray-200 rounded-lg py-2 px-4`}
-        onClick={() => setVehiclePanelOpen(false)}
+        onClick={() => setConfirmRidePanelOpen(false)}
       >
         <MdKeyboardArrowDown />
       </button>
@@ -42,7 +46,13 @@ function ConfirmRide({ vehiclePanelOpen, setVehiclePanelOpen }) {
             </div>
           </div>
         </div>
-        <button className="w-full bg-blue-900 hover:bg-blue-800 text-white py-3 font-normal px-4 rounded">
+        <button
+          onClick={() => {
+            setWaitingRideConfirmationPanelOpen(true);
+            setConfirmRidePanelOpen(false);
+          }}
+          className="w-full bg-blue-900 hover:bg-blue-800 text-white py-3 font-normal px-4 rounded"
+        >
           Confirm Ride
         </button>
       </div>
