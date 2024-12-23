@@ -12,7 +12,7 @@ function CaptainContext({ children }) {
           `${import.meta.env.VITE_BASE_URL}/api/v1/captains/profile`,
           { withCredentials: true }
         );
-        if (response.data.successs) setCaptain(response.data.user);
+        setCaptain(response?.data?.user);
       } catch (error) {
         console.error("Not authenticated: ", error);
       } finally {
@@ -32,9 +32,10 @@ function CaptainContext({ children }) {
 function useCaptainData() {
   const context = useContext(CaptainDataContext);
   if (!context) {
-    throw new Error("useUserData must be used within a CaptainDataContext");
+    throw new Error(
+      "use Captain Data must be used within a CaptainDataContext"
+    );
   }
-
   return context;
 }
 

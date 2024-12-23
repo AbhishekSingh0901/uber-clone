@@ -9,6 +9,8 @@ import UserProtectedRoute from "./components/UserProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import CaptainProtectedRoute from "./components/CaptainProtectedRoute";
 import CaptainHome from "./pages/CaptainHome";
+import UserRideLive from "./components/UserRideLive";
+import CaptainRiding from "./pages/CaptainRiding";
 
 function App() {
   return (
@@ -23,9 +25,11 @@ function App() {
         </Route>
         <Route element={<UserProtectedRoute />}>
           <Route path="/users-home" element={<Home />} />
+          <Route path="/riding" element={<UserRideLive />} />
         </Route>
         <Route element={<CaptainProtectedRoute />}>
           <Route path="/captains-home" element={<CaptainHome />} />
+          <Route path="/captain-riding" element={<CaptainRiding />} />
         </Route>
       </Routes>
     </div>
