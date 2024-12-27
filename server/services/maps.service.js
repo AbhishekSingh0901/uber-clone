@@ -7,6 +7,7 @@ module.exports.getAddressCoordinate = async (address) => {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${apiKey}`;
   try {
     const response = await axios.get(url);
+    console.log(response.data);
     const { lat, lng } = response.data.results[0].geometry.location;
     return { lat, lng };
   } catch (error) {
